@@ -1,6 +1,6 @@
 require 'uri'
 
-class RedirectUriValidator < ActiveModel::EachValidator
+Object.const_set("#{'redirect_uri'.camelize}Validator", Class.new(ActiveModel::EachValidator) do
   def self.native_redirect_uri
     Doorkeeper.configuration.native_redirect_uri
   end
@@ -32,3 +32,4 @@ class RedirectUriValidator < ActiveModel::EachValidator
     forces_ssl && uri.try(:scheme) != 'https'
   end
 end
+)
